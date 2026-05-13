@@ -15,6 +15,7 @@ import AdminUsers from './pages/admin/AdminUsers';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail';
 
 // Redirect /profile đến đúng dashboard theo role
 const RoleRedirect = () => {
@@ -63,6 +64,7 @@ const App = () => {
         }
       >
         <Route path="home" element={<Home />} />
+        <Route path="products/:id" element={<ProductDetail />} />
         <Route path="profile" element={<UserProfile />} />
       </Route>
 

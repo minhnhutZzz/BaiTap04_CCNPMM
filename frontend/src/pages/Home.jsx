@@ -59,7 +59,7 @@ const Home = () => {
           <span className="text-xs text-gray-500">Đã bán: {product.sold}</span>
         </div>
         {/* Nút xem chi tiết (sẽ cập nhật link sau khi làm trang chi tiết) */}
-        <Link to={`/products/${product.id}`} className="block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg transition-colors">
+        <Link to={`/user/products/${product.id}`} className="block w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg transition-colors">
           Xem Chi Tiết
         </Link>
       </div>
