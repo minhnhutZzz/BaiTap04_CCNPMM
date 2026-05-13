@@ -40,6 +40,10 @@ const initializeDatabase = async () => {
 
     // Create admin account
     await createAdminAccount();
+
+    // Create mock products (Milk Tea)
+    const seedDatabase = require('./seedDb');
+    await seedDatabase();
   } catch (error) {
     console.error('✗ Lỗi kết nối database:', error.message);
     process.exit(1);
