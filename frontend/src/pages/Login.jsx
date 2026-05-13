@@ -33,7 +33,7 @@ const Login = () => {
       } else {
         localStorage.removeItem('rememberedEmail');
       }
-      const target = result.payload?.redirectUrl || '/user/profile';
+      const target = result.payload?.redirectUrl || '/user/home';
       setRedirectTarget(target);
       setSuccessMsg('Đăng nhập thành công! Đang chuyển hướng...');
     }

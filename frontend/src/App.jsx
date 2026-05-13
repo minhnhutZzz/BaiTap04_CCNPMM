@@ -14,6 +14,8 @@ import AdminProfile from './pages/admin/AdminProfile';
 import AdminUsers from './pages/admin/AdminUsers';
 import ProtectedRoute from './routes/ProtectedRoute';
 
+import Home from './pages/Home';
+
 // Redirect /profile đến đúng dashboard theo role
 const RoleRedirect = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -25,7 +27,7 @@ const RoleRedirect = () => {
       </div>
     );
   }
-  return <Navigate to={user.role === 'admin' ? '/admin/profile' : '/user/profile'} replace />;
+  return <Navigate to={user.role === 'admin' ? '/admin/profile' : '/user/home'} replace />;
 };
 
 const App = () => {
@@ -60,6 +62,7 @@ const App = () => {
           </ProtectedRoute>
         }
       >
+        <Route path="home" element={<Home />} />
         <Route path="profile" element={<UserProfile />} />
       </Route>
 
