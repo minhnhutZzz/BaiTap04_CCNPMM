@@ -215,4 +215,14 @@ Middleware validation bắt lỗi ngay lập tức khi thiếu trường bắt b
 
 ### 🚫 Vượt Rate Limit — HTTP 429 Too Many Requests
 Sau quá nhiều lần đăng nhập thất bại liên tiếp, IP bị chặn tạm thời và nhận thông báo thử lại sau.
- 
+
+## 1 số hình ảnh UI:
+<img width="1894" height="830" alt="image" src="https://github.com/user-attachments/assets/026b9ebf-a53e-43fe-9b03-080f0a6026ed" />
+
+<img width="1900" height="907" alt="image" src="https://github.com/user-attachments/assets/106848e9-6c74-4add-99de-725af6887a74" />
+
+<img width="1888" height="910" alt="image" src="https://github.com/user-attachments/assets/aa908763-48b6-4e82-994e-bd7076f56f03" />
+
+<img width="1894" height="907" alt="image" src="https://github.com/user-attachments/assets/f8c05ea3-d00c-415d-870b-810afd7f58d4" />
+
+
