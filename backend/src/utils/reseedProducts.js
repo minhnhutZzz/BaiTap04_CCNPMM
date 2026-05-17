@@ -106,10 +106,27 @@ const reseedProducts = async () => {
 
     console.log('🌱 Đang tạo ảnh bổ sung cho sản phẩm...');
     await ProductImage.bulkCreate([
-      { product_id: products[0].id, image_url: 'https://images.unsplash.com/photo-1558857563-b37102e96ab5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
-      { product_id: products[0].id, image_url: 'https://images.unsplash.com/photo-1588698188173-04d805090ef6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
+      // Trà Sữa Trân Châu Đường Đen [0]
+      { product_id: products[0].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/umctriflkcqcb5mlrgkm.jpg' },
+      { product_id: products[0].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/mutbr8m14ouyvckubis6.jpg' },
+      // Trà Sữa Oolong Nướng [1]
+      { product_id: products[1].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/obibrgzlkjlgrg5o082j.jpg' },
+      { product_id: products[1].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/xzet0vg5xft9rdnvqxhy.jpg' },
+      // Trà Đào Cam Sả [2] - giữ ảnh cũ
       { product_id: products[2].id, image_url: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
-      { product_id: products[2].id, image_url: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' }
+      { product_id: products[2].id, image_url: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60' },
+      // Trà Xoài Kem Cheese [3]
+      { product_id: products[3].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/x9kzrfaaa3bair9paslf.jpg' },
+      { product_id: products[3].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/i9swqy69vs1pkxrdlbc1.jpg' },
+      // Hồng Trà Sữa [4]
+      { product_id: products[4].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/xhdcatx70h5x60xevbd3.jpg' },
+      { product_id: products[4].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/x2yjs0uabk2cmjx8dfig.jpg' },
+      // Trà Dâu Kem Cheese [5]
+      { product_id: products[5].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/ulft3ffi3armelfe29fi.jpg' },
+      { product_id: products[5].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/lf2xrcyscqk6gk3elywu.jpg' },
+      // Trà Chanh Leo [6]
+      { product_id: products[6].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/ecrnhbimthzgnvbzyp1p.jpg' },
+      { product_id: products[6].id, image_url: 'https://res.cloudinary.com/dpofwhvku/image/upload/bhqhk8uelx0tetgnoxsh.jpg' }
     ]);
 
     console.log(`\n✅ Hoàn thành! Đã tạo:`);
