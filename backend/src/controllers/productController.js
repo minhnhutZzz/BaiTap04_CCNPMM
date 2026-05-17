@@ -29,7 +29,7 @@ const productController = {
       }
 
       // Sắp xếp
-      let orderClause = [['created_at', 'DESC']]; // Mặc định mới nhất
+      let orderClause = [['createdAt', 'DESC']]; // Mặc định mới nhất
       if (sort === 'price_asc') orderClause = [['price', 'ASC']];
       if (sort === 'price_desc') orderClause = [['price', 'DESC']];
       if (sort === 'best_seller') orderClause = [['sold', 'DESC']];

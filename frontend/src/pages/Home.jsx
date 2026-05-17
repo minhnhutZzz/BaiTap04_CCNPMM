@@ -5,6 +5,7 @@ import productService from '../services/product.service';
 const Home = () => {
   const [promoProducts, setPromoProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+  const [bestSellers, setBestSellers] = useState([]);
   
   // Search & Filter state
   const [allProducts, setAllProducts] = useState([]);
@@ -13,7 +14,8 @@ const Home = () => {
     search: '',
     category_id: '',
     sort: '',
-    is_promotion: false
+    is_promotion: false,
+    is_new: false
   });
   
   const [loading, setLoading] = useState(true);
@@ -24,15 +26,17 @@ const Home = () => {
       try {
         setLoading(true);
         // Gọi API đồng thời để lấy dữ liệu trang chủ và danh mục
-        const [promoRes, newRes, catRes, allRes] = await Promise.all([
+        const [promoRes, newRes, bestRes, catRes, allRes] = await Promise.all([
           productService.getProducts({ is_promotion: true }),
           productService.getProducts({ is_new: true }),
+          productService.getProducts({ sort: 'best_seller' }),
           productService.getCategories(),
-          productService.getProducts() // Lấy tất cả lần đầu
+          productService.getProducts()
         ]);
 
         if (promoRes.success) setPromoProducts(promoRes.data);
         if (newRes.success) setNewProducts(newRes.data);
+        if (bestRes.success) setBestSellers(bestRes.data.slice(0, 4));
         if (catRes.success) setCategories(catRes.data);
         if (allRes.success) setAllProducts(allRes.data);
       } catch (error) {
@@ -60,6 +64,7 @@ const Home = () => {
       setFilterLoading(true);
       const queryParams = { ...filters };
       if (!queryParams.is_promotion) delete queryParams.is_promotion;
+      if (!queryParams.is_new) delete queryParams.is_new;
       if (!queryParams.category_id) delete queryParams.category_id;
       if (!queryParams.search) delete queryParams.search;
       if (!queryParams.sort) delete queryParams.sort;
@@ -77,9 +82,9 @@ const Home = () => {
 
   // Gọi applyFilters mỗi khi filters thay đổi (có thể dùng debounce nếu cần, ở đây gọi thủ công qua nút Tìm kiếm hoặc đổi dropdown)
   useEffect(() => {
-    // Để mượt hơn, tự động gọi API khi đổi Category, Sort, Promo. Search text thì chờ bấm nút.
+    // Để mượt hơn, tự động gọi API khi đổi Category, Sort, Promo, New. Search text thì chờ bấm nút.
     applyFilters();
-  }, [filters.category_id, filters.sort, filters.is_promotion]);
+  }, [filters.category_id, filters.sort, filters.is_promotion, filters.is_new]);
 
 
   const renderProductCard = (product) => (
@@ -147,6 +152,16 @@ const Home = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">✨ Trà Sữa Mới Ra Mắt</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {newProducts.map(renderProductCard)}
+          </div>
+        </section>
+      )}
+
+      {/* Bán chạy nhất */}
+      {bestSellers.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">🏆 Bán Chạy Nhất</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {bestSellers.map(renderProductCard)}
           </div>
         </section>
       )}
@@ -222,6 +237,20 @@ const Home = () => {
                   className="w-5 h-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500"
                 />
                 <span className="ml-2 text-gray-700 font-medium whitespace-nowrap">Chỉ khuyến mãi</span>
+              </label>
+            </div>
+
+            {/* Sản phẩm mới (Checkbox) */}
+            <div className="w-full md:w-auto flex items-center h-10 px-2">
+              <label className="flex items-center cursor-pointer">
+                <input 
+                  type="checkbox" 
+                  name="is_new"
+                  checked={filters.is_new}
+                  onChange={handleFilterChange}
+                  className="w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500"
+                />
+                <span className="ml-2 text-gray-700 font-medium whitespace-nowrap">Chỉ hàng mới</span>
               </label>
             </div>
           </div>
